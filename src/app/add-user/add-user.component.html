@@ -1,0 +1,156 @@
+
+<div class="add-user-page">
+
+  <div class="page-header">
+    <div>
+      <h2>Add User</h2>
+      <p>Enter the user details below to create a new record.</p>
+    </div>
+  </div>
+
+  <div class="form-card">
+
+    <div class="form-card-header">
+      <h3>User Information</h3>
+      <p>Please fill in all the required fields.</p>
+    </div>
+
+    <form [formGroup]="userForm" (ngSubmit)="saveUser()" novalidate>
+
+      <div class="form-grid">
+
+        <!-- Name -->
+        <mat-form-field appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Enter full name"
+            maxlength="100">
+
+          <mat-error *ngIf="formControls['name'].hasError('required')">
+            Name is required.
+          </mat-error>
+
+          <mat-error *ngIf="formControls['name'].hasError('whitespace')">
+            Please enter a valid name.
+          </mat-error>
+
+          <mat-error *ngIf="formControls['name'].hasError('minlength')">
+            Name must contain at least 2 characters.
+          </mat-error>
+
+          <mat-error *ngIf="formControls['name'].hasError('maxlength')">
+            Name cannot exceed 100 characters.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Age -->
+        <mat-form-field appearance="outline">
+          <mat-label>Age</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="age"
+            min="0"
+            max="120"
+            step="1"
+            placeholder="Enter age">
+
+          <mat-error *ngIf="formControls['age'].hasError('required')">
+            Age is required.
+          </mat-error>
+
+          <mat-error *ngIf="formControls['age'].hasError('pattern')">
+            Enter a whole number between 0 and 120.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- City -->
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            formControlName="city"
+            placeholder="Enter city">
+
+          <mat-error *ngIf="formControls['city'].hasError('required')">
+            City is required.
+          </mat-error>
+
+          <mat-error *ngIf="formControls['city'].hasError('whitespace')">
+            Please enter a valid city.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- State -->
+        <mat-form-field appearance="outline">
+          <mat-label>State</mat-label>
+          <input
+            matInput
+            formControlName="state"
+            placeholder="Enter state">
+
+          <mat-error *ngIf="formControls['state'].hasError('required')">
+            State is required.
+          </mat-error>
+
+          <mat-error *ngIf="formControls['state'].hasError('whitespace')">
+            Please enter a valid state.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Pincode -->
+        <mat-form-field appearance="outline">
+          <mat-label>Pincode</mat-label>
+          <input
+            matInput
+            formControlName="pincode"
+            placeholder="Enter pincode"
+            maxlength="10">
+
+          <mat-error *ngIf="formControls['pincode'].hasError('required')">
+            Pincode is required.
+          </mat-error>
+
+          <mat-error *ngIf="formControls['pincode'].hasError('pattern')">
+            Pincode must contain 4 to 10 valid characters.
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          mat-stroked-button
+          type="button"
+          class="cancel-button"
+          [disabled]="isSaving"
+          (click)="cancel()">
+          Cancel
+        </button>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="save-button"
+          [disabled]="isSaving">
+
+          <mat-spinner
+            *ngIf="isSaving"
+            diameter="20">
+          </mat-spinner>
+
+          <span *ngIf="!isSaving">Save User</span>
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

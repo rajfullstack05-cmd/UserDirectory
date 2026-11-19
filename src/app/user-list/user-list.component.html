@@ -1,0 +1,132 @@
+<nav class="top-navbar">
+  <div class="navbar-brand">
+    <mat-icon>dashboard</mat-icon>
+    <span>User Management</span>
+  </div>
+
+  <div class="navbar-right">
+    <span class="welcome-text">Welcome, Admin</span>
+    <button mat-button class="logout-btn">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </div>
+</nav>
+
+
+
+
+<div class="user-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+
+    <div>
+      <h2>User Directory</h2>
+      <p>View and manage all registered users.</p>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="add-user-btn"
+      (click)="addUser()">
+
+      <mat-icon>add</mat-icon>
+      Add User
+
+    </button>
+
+  </div>
+
+  <!-- User Table -->
+  <div class="table-container">
+
+    <div class="table-title">
+      <h3>All Users</h3>
+      <span>{{ users.length }} Users</span>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-container" *ngIf="isLoading">
+      <mat-spinner diameter="35"></mat-spinner>
+      <p>Loading users...</p>
+    </div>
+
+    <!-- Error -->
+    <div class="error-container" *ngIf="!isLoading && errorMessage">
+      <p>{{ errorMessage }}</p>
+      <button mat-stroked-button color="primary" (click)="loadUsers()">
+        Try Again
+      </button>
+    </div>
+
+    <!-- Empty State -->
+    <div
+      class="empty-container"
+      *ngIf="!isLoading && !errorMessage && users.length === 0">
+
+      <mat-icon>people_outline</mat-icon>
+      <h3>No users found</h3>
+      <p>Add your first user to get started.</p>
+
+    </div>
+
+    <!-- Dynamic Table -->
+    <div
+      class="table-wrapper"
+      *ngIf="!isLoading && !errorMessage && users.length > 0">
+
+      <table mat-table [dataSource]="users" class="user-table">
+
+        <!-- Name -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let user">
+            {{ user.name }}
+          </td>
+        </ng-container>
+
+        <!-- Age -->
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef>Age</th>
+          <td mat-cell *matCellDef="let user">
+            {{ user.age }}
+          </td>
+        </ng-container>
+
+        <!-- City -->
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef>City</th>
+          <td mat-cell *matCellDef="let user">
+            {{ user.city }}
+          </td>
+        </ng-container>
+
+        <!-- State -->
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>State</th>
+          <td mat-cell *matCellDef="let user">
+            {{ user.state }}
+          </td>
+        </ng-container>
+
+        <!-- Pincode -->
+        <ng-container matColumnDef="pincode">
+          <th mat-header-cell *matHeaderCellDef>Pincode</th>
+          <td mat-cell *matCellDef="let user">
+            {{ user.pincode }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

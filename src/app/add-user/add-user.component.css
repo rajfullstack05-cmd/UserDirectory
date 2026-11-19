@@ -1,0 +1,100 @@
+
+.add-user-page {
+  min-height: 100vh;
+  padding: 35px 45px;
+  background: #f5f7fa;
+}
+
+.page-header {
+  margin-bottom: 25px;
+}
+
+.page-header h2 {
+  margin: 0;
+  color: #263445;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.page-header p {
+  margin: 7px 0 0;
+  color: #748094;
+  font-size: 14px;
+}
+
+.form-card {
+  max-width: 850px;
+  padding: 25px 28px;
+  background: #fff;
+  border: 1px solid #e5eaf0;
+  border-radius: 7px;
+}
+
+.form-card-header {
+  margin-bottom: 25px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.form-card-header h3 {
+  margin: 0;
+  color: #263445;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.form-card-header p {
+  margin: 7px 0 0;
+  color: #8490a1;
+  font-size: 13px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 22px;
+  row-gap: 5px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 15px;
+  padding-top: 20px;
+  border-top: 1px solid #edf0f4;
+}
+
+.cancel-button,
+.save-button {
+  min-width: 110px;
+  height: 40px;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.save-button mat-spinner {
+  margin: auto;
+}
+
+@media (max-width: 650px) {
+  .add-user-page {
+    padding: 22px 15px;
+  }
+
+  .form-card {
+    padding: 20px 15px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions button {
+    flex: 1;
+  }
+}
